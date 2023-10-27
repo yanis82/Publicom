@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\MessageModel;
+
 class Message extends BaseController
 {
     public function modifier($idMessage): string
@@ -9,8 +11,35 @@ class Message extends BaseController
         return '<h1> id employe : '.$idMessage.'</h1>';
     }
 
-    public function supprimer($idMessage): string
+    // public function suprimer()
+    // {
+    //     // Get the data from the database
+    //     $data = $this->view->lister();
+
+    //     // Check if the submit button has been clicked
+    //     if (isset($_POST['submit'])) {
+    //         // Get the checked checkboxes
+    //         $checkedCheckBoxes = $this->input->post('checkbox');
+
+    //         // Loop through the checked checkboxes and delete the corresponding columns
+    //         foreach ($checkedCheckBoxes as $checkedCheckbox) {
+    //             $this->db->drop_column('messages', $checkedCheckbox);
+    //         }
+
+    //         // Refresh the data
+    //         $data = $this->view->lister();
+    //     }
+
+    //     // Return the data
+    //     return view('listeMessage', ['data' => $data]);
+        
+    // }
+    
+    
+    public function lister(): string
     {
-        return '<h1> id employe : '.$idMessage.'</h1>';
+        $messageModel=new MessageModel();
+        $data= $messageModel->findAll();;
+        return view('listeMessage',['data'=>$data]);
     }
 }
