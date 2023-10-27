@@ -21,23 +21,30 @@ class Utilisateur extends BaseController
     }
     public function creer()
     {
+        $mdp = $this->request->getPost('pass');
+        $hashMdp = password_hash($mdp, PASSWORD_BCRYPT);
         $inputs = [
-            "nomUtilisateur" => $this->request->getPost('nom'),
-            "prenomUtilisateur" => $this->request->getPost('prenom'),
-            "emailUtilisateur" => $this->request->getPost('email'),
-            "mdpUtilisateur" => $this->request->getPost('pass'),
-            "verifPass" => $this->request->getPost('verifPass'),
+            'nomUtilisateur' => $this->request->getPost('nom'),
+            'prenomUtilisateur' => $this->request->getPost('prenom'),
+            'emailUtilisateur' => strtolower($this->request->getPost('email')),
+            'mdpUtilisateur' => $hashMdp,
+            'verifPass' => $this->request->getPost('verifPass'),
         ];
         $validateUser = $this->validateUser($inputs);
         array_push($inputs, ['isADmin' => 0]);
         if($validateUser[0]){
             $UtilisateurModel = new UtilisateurModel();
+            $isAlreadyExistant = $UtilisateurModel -> where(['EMAILUTILISATEUR' => $inputs['emailUtilisateur']]) -> first();
+            if($isAlreadyExistant) {
+                return Utilitaires::error('Utilisateur déjà existant');
+            }
             $UtilisateurModel->insert($inputs);
 
             $res = ['message' => 'ok'];
-            return json_encode($res);
+            return Utilitaires::success('Utilisateur cree avec succes');
         }else {
-            return json_encode(['error' => $validateUser['error']]);
+
+            return Utilitaires::error('Erreur lors de la creation de l\'utilisateur');
         }
     }
 
@@ -52,17 +59,34 @@ class Utilisateur extends BaseController
             'pass' => $this -> request -> getPost('pass'),
         ];
 
-        $user = $utilisateurModel -> where(['emailUtilisateur' => $datas['email'], 'mdpUtilisateur' => $datas['pass']]) -> first();
-        if($user){
-            session() -> setFlashdata(['success' => 'connecté avec succès']);
+        $user = $utilisateurModel -> where(['emailUtilisateur' => $datas['email']]) -> first();
+
+        if(!$user) return Utilitaires::error('email ne correspond à aucun utilisateur');
+
+        $passwordOk = password_verify($datas['pass'], $user['MDPUTILISATEUR']);
+        if($passwordOk){
             session() -> set(['isConnected' => $user]);
-            return redirect() -> to(base_url('liste-messages'));
+            return Utilitaires::success('connecté avec succès', 'liste-messages');
         } else {
-            session() -> setFlashdata(['error' => 'connexion échoué: mot de passe ou email incorrect']);
-            return redirect() ->back();
+            return Utilitaires::error('connexion échoué: mot de passe ou email incorrect');
         }
     }
 
+    public function logout() {
+        session()->remove('isConnected');
+        return Utilitaires::success('Deconnecté avec succès', 'se-connecter');
+    }
+
+    public function testDev() {
+        return json_encode([
+            'session() -> has()' => session() -> has('isConnected'),
+            'session() -> get()' => session() -> get(),
+        ]);
+    }
+
+    static function isConnected(): bool {
+        return session() -> has('isConnected');
+    }
     private function validateUser($inputs) 
     {
         
@@ -74,12 +98,6 @@ class Utilisateur extends BaseController
         return [true];   
     }
 
-    public function testDev() {
-        return json_encode([
-            'session() -> has()' => session() -> has('isConnected'),
-            'session() -> get()' => session() -> get(),
-        ]);
-    }
 
     
 }

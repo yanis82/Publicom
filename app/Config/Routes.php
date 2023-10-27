@@ -7,6 +7,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 // $routes->get('/', 'Home::index');
 $routes -> get('/', 'Home::index', ['filter' => 'isConnected']); // authentification formulaire
+
+$routes -> get('/logout', 'Utilisateur::logout', ['filter' => 'isConnected']); // Logout
 // $routes -> post('/', 'Utilisateur::auth', ['filter' => 'isConnected']); // authentification
 // Ce sera juste des vues avec un formulaire qui ensuite enverront vers les vrais pages qui feront les requetes \\
 $routes -> get('/creer-utilisateur', 'Utilisateur::creerForm'); //FORMULAIRE CREER UTILISATEUR

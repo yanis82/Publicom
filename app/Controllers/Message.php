@@ -8,7 +8,7 @@ class Message extends BaseController
 {
     public function modifier($idMessage): string
     {
-        return '<h1> id employe : '.$idMessage.'</h1>';
+        return '<h1> id employe : ' . $idMessage . '</h1>';
     }
 
     // public function suprimer()
@@ -32,14 +32,23 @@ class Message extends BaseController
 
     //     // Return the data
     //     return view('listeMessage', ['data' => $data]);
-        
+
     // }
-    
-    
+
+
     public function lister(): string
     {
-        $messageModel=new MessageModel();
-        $data= $messageModel->findAll();;
-        return view('listeMessage',['data'=>$data]);
+        $messageModel = new MessageModel();
+        $data = $messageModel->findAll();
+        ;
+        return view('listeMessage', ['data' => $data]);
+    }
+
+    public function creerForm()
+    {
+        return view('message/creerForm');
+    }
+    public function creer() {
+        return json_encode($this -> request -> getPost());
     }
 }
