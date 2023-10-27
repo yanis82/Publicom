@@ -17,6 +17,6 @@ Se connecter
         <label for="password"> mot de passe : 
             <input type="password" name="pass" id="pass" min="4" required>
         </label>
-        <input type="submit" value="creer utilisateur">
+        <input type="submit" value="se connecter">
     </form>
 <?= $this -> endSection() ?>

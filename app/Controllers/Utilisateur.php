@@ -56,7 +56,7 @@ class Utilisateur extends BaseController
         if($user){
             session() -> setFlashdata(['success' => 'connecté avec succès']);
             session() -> set(['isConnected' => $user]);
-            return redirect() ->back();
+            return redirect() -> to(base_url('liste-messages'));
         } else {
             session() -> setFlashdata(['error' => 'connexion échoué: mot de passe ou email incorrect']);
             return redirect() ->back();
@@ -72,6 +72,13 @@ class Utilisateur extends BaseController
             }
         }
         return [true];   
+    }
+
+    public function testDev() {
+        return json_encode([
+            'session() -> has()' => session() -> has('isConnected'),
+            'session() -> get()' => session() -> get(),
+        ]);
     }
 
     
