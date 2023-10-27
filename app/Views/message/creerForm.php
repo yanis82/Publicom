@@ -14,7 +14,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="titre" class="form-label">Titre</label>
                     <input type="text" name="titre" id="titre" class="form-control" required>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Default file input example</label>
-                    <input class="form-control" name="imageBackground" type="file" id="formFile">
+                    <input class="form-control"  accept="image/*"  name="imageBackground" type="file" id="formFile">
                 </div>
                 <input type="submit" value="Créer message" class="btn btn-primary">
             </form>

@@ -1,3 +1,10 @@
+<?php
+use App\Controllers\Message;
+/**
+ * @var CodeIgniter\View\View $this
+ */
+?>
+
 <?= $this->extend('default') ?>
 
 <?= $this->section('titre') ?>
@@ -24,24 +31,38 @@
                         <th>Id</th>
                         <th>Titre</th>
                         <th>Contenu</th>
+                        <th>image</th>
                         <th>Statut</th>
                         <th>Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($data as $message) : ?>
+                    <?php foreach ($data as $message): ?>
                         <tr>
-                            <td><?php echo $message['IDMESSAGE']; ?></td>
-                            <td><?php echo $message['TITREMESSAGE']; ?></td>
-                            <td><?php echo $message['CONTENUMESSAGE']; ?></td>
                             <td>
-                                <?php if ($message['ENLIGNE'] == 0) : ?>
+                                <?= $message['IDMESSAGE']; ?>
+                            </td>
+                            <td>
+                                <?= $message['TITREMESSAGE']; ?>
+                            </td>
+                            <td>
+                                <?= $message['CONTENUMESSAGE']; ?>
+                            </td>
+                            <td>
+                                <a
+                                href='<?= base_url('images/'.$message['IMAGEMESSAGE']) ?>'
+                                target='_blank'
+                                >Voir l'image</a>
+                            </td>
+                            <td>
+                                <?php if ($message['ENLIGNE'] == 0): ?>
                                     Hors ligne
-                                <?php else : ?>
+                                <?php else: ?>
                                     En ligne
                                 <?php endif; ?>
                             </td>
-                            <td><input type="checkbox" name="checkbox[]" value="<?php echo $message['IDMESSAGE']; ?>"> Supprimer</td>
+                            <td><input type="checkbox" name="checkbox[]" value="<?= $message['IDMESSAGE']; ?>"> Supprimer
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

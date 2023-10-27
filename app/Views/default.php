@@ -79,6 +79,7 @@ $user = session()->get('isConnected');
                         <a class="nav-link active" aria-current="page" href="/creer-utilisateur">Creer utilisateur</a>
                         <a class="nav-link active" aria-current="page" href="/se-connecter">Se connecter</a>
                         <a class="nav-link active" aria-current="page" href="/creer-message">Creer message</a>
+                        <a class="nav-link active" aria-current="page" href="/liste-messages">liste-messages</a>
                         <a class="nav-link active" aria-current="page" href="#">Déconnexion</a>
 
                     </div>

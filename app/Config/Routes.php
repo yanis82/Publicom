@@ -33,4 +33,7 @@ $routes -> get('/historique-message/(:num)', 'Historique::lister/$1', ['filter' 
 $routes -> get('/test-dev', 'Utilisateur::testDev', ['filter' => 'isConnected']); //historique d'un message
 
 
+$routes->get('images/(:segment)/(:segment)', 'Message::showImage/$1/$2');
 
+$routes->get('upload', 'Upload::index');          // Add this line.
+$routes->post('upload/upload', 'Upload::upload'); // Add this line.
