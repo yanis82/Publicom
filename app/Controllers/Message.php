@@ -7,7 +7,7 @@ use CodeIgniter\Files\File;
 
 class Message extends BaseController
 {
-    public function modifier($idMessage): string
+    public function modifierForm($idMessage): string
     {
         return '<h1> id employe : ' . $idMessage . '</h1>';
     }
