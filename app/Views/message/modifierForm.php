@@ -5,7 +5,7 @@
  */
 ?>
 <?= $this->extend('default') ?>
-
+Modifier message
 <?= $this->section('titre') ?>
 
 <?= $this->endSection() ?>
@@ -14,7 +14,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="/modifier-message" method="post" enctype="multipart/form-data">
+                <input style="display: none;" name="idMessage" type="text" value="<?= $idMessage ?>" >
                 <div class="mb-3">
                     <label for="titre" class="form-label">Titre</label>
                     <input type="text" name="titre" id="titre" class="form-control" required>

@@ -7,9 +7,48 @@ use CodeIgniter\Files\File;
 
 class Message extends BaseController
 {
+    private $messageModel;
+    public function __construct()
+    {
+        $this->messageModel = new MessageModel();
+    }
     public function modifierForm($idMessage): string
     {
-        return '<h1> id employe : ' . $idMessage . '</h1>';
+        return view('message/modifierForm', ['idMessage' => $idMessage]);
+    }
+
+    public function modifier()
+    {
+        $inputValues = [
+            "titre" => $this->request->getPost("titre"),
+            "message" => $this->request->getPost("message"),
+            "enLigne" => $this->request->getPost("tienLigne"),
+            "image" => $this->request->getFile("imageBackground"),
+            "idMessage" => $this->request->getPost("idMessage"),
+        ];
+        if ($inputValues['titre']) {
+            $inputValuesToUpdate['titreMessage'] = $inputValues['titre'];
+        }
+        if ($inputValues['message']) {
+            $inputValuesToUpdate['contenuMessage'] = $inputValues['message'];
+        }
+        if ($inputValues['enLigne']) {
+            $inputValuesToUpdate['enLigne'] = $inputValues['enLigne'];
+        }
+        if ($inputValues['image'] !== null) {
+            $dataUpload = $this->upload();
+
+            if ($dataUpload['isOk']) {
+                $inputValuesToUpdate['imageMessage'] = $dataUpload['path'];
+                return Utilitaires::success('Message modifié avec succès');
+            } else {
+                return Utilitaires::error($dataUpload['error']);
+            }
+
+        }
+
+        $this->messageModel->update(['idMessage' => $inputValues['idMessage']], $inputValuesToUpdate);
+        return json_encode(['inputValues' => $inputValues, 'inputToUpdate' => $inputValuesToUpdate]);
     }
 
     // public function suprimer()
@@ -56,16 +95,16 @@ class Message extends BaseController
         if ($dataUpload['isOk']) {
             $relativePath = $dataUpload['path'];
             $data = [
-                'idUtilisateur' => session() -> get('isConnected')['IDUTILISATEUR'],
-                'titreMessage' => $this -> request -> getPost('titre'),
-                'contenuMessage' => $this -> request -> getPost('message'),
+                'idUtilisateur' => session()->get('isConnected')['IDUTILISATEUR'],
+                'titreMessage' => $this->request->getPost('titre'),
+                'contenuMessage' => $this->request->getPost('message'),
                 'imageMessage' => $relativePath,
-                'enLigne' => !empty($this -> request -> getPost('enLigne')),
+                'enLigne' => !empty($this->request->getPost('enLigne')),
             ];
             $messageModel = new MessageModel();
-            $messageModel -> insert($data);
+            $messageModel->insert($data);
             return Utilitaires::success('Message créé avec succès');
-        }else {
+        } else {
             return Utilitaires::error($dataUpload['error']);
         }
     }
@@ -107,7 +146,7 @@ class Message extends BaseController
 
     public function showImage($pathFolder, $pathFile)
     {
-        $path = $pathFolder.'/'.$pathFile;
+        $path = $pathFolder . '/' . $pathFile;
         $filepath = WRITEPATH . 'uploads/' . $path;
 
         $mime = mime_content_type($filepath);
