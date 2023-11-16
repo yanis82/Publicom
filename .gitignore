@@ -122,5 +122,4 @@ nb-configuration.xml
 .vscode/
 folderfr
 /.phpunit.*.cache
-composer.lock
 
