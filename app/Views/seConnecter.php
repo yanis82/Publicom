@@ -17,13 +17,13 @@ Se connecter
             <div class="form-label-group">
                 <div class="mb-3">
                     <label for="inputEmail">Adresse e-mail</label>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Adresse e-mail" required autofocus>
+                    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Adresse e-mail" required autofocus>
                 </div>
 
                 <div class="form-label-group">
                     <div class="mb-3">
                         <label for="inputPassword">Mot de passe</label>
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+                        <input type="password" name="pass" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
                     </div>
                     <div class="d-grid gap-2">
 
