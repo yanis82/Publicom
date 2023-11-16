@@ -26,6 +26,10 @@ class Utilisateur extends BaseController
         $verifMdp = $this->request->getPost('verifPass');
         if ($mdp === $verifMdp) {
             $UtilisateurModel = new UtilisateurModel();
+<<<<<<< Updated upstream
+=======
+            
+>>>>>>> Stashed changes
             $hashMdp = password_hash($mdp, PASSWORD_BCRYPT);
             $inputs = [
                 'nomUtilisateur' => $this->request->getPost('nom'),
@@ -34,6 +38,7 @@ class Utilisateur extends BaseController
                 'mdpUtilisateur' => $hashMdp,
                 'verifPass' => $this->request->getPost('verifPass'),
             ];
+<<<<<<< Updated upstream
 
             $isAlreadyEmail = count($UtilisateurModel->where(['emailUtilisateur' => $inputs['emailUtilisateur']])->find()) >= 1;
             if (!$isAlreadyEmail) {
@@ -52,6 +57,29 @@ class Utilisateur extends BaseController
                 }
             } return Utilitaires::error('Erreur, Email déjà utilisé ');
         }else {
+=======
+            
+            $isAlreadyEmail = $UtilisateurModel->where(['emailUtilisateur' => $inputs['emailUtilisateur']])->find();
+            if($isAlreadyEmail){
+
+            
+
+            $validateUser = $this->validateUser($inputs);
+            array_push($inputs, ['isADmin' => 0]);
+            if ($validateUser[0]) {
+                $isAlreadyExistant = $UtilisateurModel->where(['EMAILUTILISATEUR' => $inputs['emailUtilisateur']])->first();
+                if ($isAlreadyExistant) {
+                    return Utilitaires::error('Utilisateur déjà existant');
+                }
+                
+                $UtilisateurModel->insert($inputs);
+                return Utilitaires::success('Utilisateur cree avec succes');
+            } else {
+                return Utilitaires::error('Erreur, tous les champs doivent etre remplis');
+            }
+        } else
+        } else {
+>>>>>>> Stashed changes
             return Utilitaires::error('Erreur, les mot de passes ne correspondent ');
         }
     }
