@@ -65,8 +65,10 @@ $user = session()->get('isConnected');
         <h1>
             <?= $this->renderSection('titre') ?>
         </h1>
+        <div class="mb-3">
         <nav class="navbar navbar-dark bg-dark">
             <!-- Navbar content -->
+            
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Barre de navigation</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -81,8 +83,9 @@ $user = session()->get('isConnected');
                         <a class="nav-link active" aria-current="page" href="/creer-message">Creer message</a>
                         <a class="nav-link active" aria-current="page" href="/liste-messages">liste-messages</a>
                         <a class="nav-link active" aria-current="page" href="#">Déconnexion</a>
-
+                        
                     </div>
+                    
                 </div>
             </div>
         </nav>
@@ -90,13 +93,14 @@ $user = session()->get('isConnected');
     <main>
         <?= $this->renderSection('main') ?>
     </main>
-
+    <div class="fixed-bottom">
     <footer class="footer mt-auto py-3 bg-dark text-white">
         <div class="container">
             <span class="text-muted">Copyright &copy; Portfolio</span>
             <ul class="list-inline">
 
             </ul>
+            </div>
         </div>
     </footer>
 
