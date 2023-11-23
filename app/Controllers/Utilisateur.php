@@ -50,8 +50,9 @@ class Utilisateur extends BaseController
                 } else {
                     return Utilitaires::error('Erreur, tous les champs doivent etre remplis');
                 }
-            } return Utilitaires::error('Erreur, Email déjà utilisé ');
-        }else {
+            }
+            return Utilitaires::error('Erreur, Email déjà utilisé ');
+        } else {
             return Utilitaires::error('Erreur, les mot de passes ne correspondent ');
         }
     }
@@ -100,6 +101,14 @@ class Utilisateur extends BaseController
     static function isConnected(): bool
     {
         return session()->has('isConnected');
+    }
+
+    static function isAdmin(): bool
+    {
+        if (Utilisateur::isConnected()) {
+            return (bool)session()->get('isConnected')['ISADMIN'];
+        } else
+            return getenv('CI_ENVIRONMENT') === "development";
     }
 
     // si un champ est vide, renvoi un tableau dont ke preimer element est vide avec 'error' => erreur

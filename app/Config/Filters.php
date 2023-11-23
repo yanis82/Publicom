@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\isAdmin;
 use App\Filters\isConnected;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -26,6 +27,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'isConnected' => isConnected::class,
+        'isAdmin' => isAdmin::class,
     ];
 
     /**

@@ -11,8 +11,8 @@ $routes -> get('/', 'Home::index', ['filter' => 'isConnected']); // authentifica
 $routes -> get('/logout', 'Utilisateur::logout', ['filter' => 'isConnected']); // Logout
 // $routes -> post('/', 'Utilisateur::auth', ['filter' => 'isConnected']); // authentification
 // Ce sera juste des vues avec un formulaire qui ensuite enverront vers les vrais pages qui feront les requetes \\
-$routes -> get('/creer-utilisateur', 'Utilisateur::creerForm'); //FORMULAIRE CREER UTILISATEUR
-$routes -> post('/creer-utilisateur', 'Utilisateur::creer'); //FORMULAIRE CREER UTILISATEUR
+$routes -> get('/creer-utilisateur', 'Utilisateur::creerForm', ['filter' => 'isAdmin']); //FORMULAIRE CREER UTILISATEUR
+$routes -> post('/creer-utilisateur', 'Utilisateur::creer', ['filter' => 'isAdmin']); //FORMULAIRE CREER UTILISATEUR
 
 $routes -> get('/se-connecter', 'Utilisateur::seConnecterForm'); //FORMULAIRE CONNECTION UTILISATEUR
 $routes -> post('/se-connecter', 'Utilisateur::seConnecter'); //FORMULAIRE CONNECTION UTILISATEUR
