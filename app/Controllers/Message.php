@@ -55,7 +55,10 @@ class Message extends BaseController
         $checkBoxSupprimer = $this->request->getPost("checkboxSupprimer");
         $messageModel = new MessageModel();
         try {
+            $historiqueMessageModel = new HistoriqueMessageModel();
             foreach ($checkBoxSupprimer as $currIdMessage) {
+                $historiqueMessageModel->delete(["IDMESSAGE" => $currIdMessage]);
+                
                 $messageModel->delete(["IDMESSAGE" => $currIdMessage]);
             }
         
