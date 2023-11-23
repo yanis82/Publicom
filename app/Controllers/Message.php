@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Models\HistoriqueMessageModel;
 use App\Models\MessageModel;
 use CodeIgniter\Files\File;
+use CodeIgniter\I18n\Time;
 
 class Message extends BaseController
 {
@@ -33,9 +35,6 @@ class Message extends BaseController
             $inputValuesToUpdate['contenuMessage'] = $inputValues['message'];
         }
         if ($inputValues['enLigne']) {
-            $inputValuesToUpdate['enLigne'] = $inputValues['enLigne'];
-        }
-        if ($inputValues['image'] !== null) {
             $dataUpload = $this->upload();
 
             if ($dataUpload['isOk']) {
@@ -51,29 +50,21 @@ class Message extends BaseController
         return json_encode(['inputValues' => $inputValues, 'inputToUpdate' => $inputValuesToUpdate]);
     }
 
-    // public function suprimer()
-    // {
-    //     // Get the data from the database
-    //     $data = $this->view->lister();
-
-    //     // Check if the submit button has been clicked
-    //     if (isset($_POST['submit'])) {
-    //         // Get the checked checkboxes
-    //         $checkedCheckBoxes = $this->input->post('checkbox');
-
-    //         // Loop through the checked checkboxes and delete the corresponding columns
-    //         foreach ($checkedCheckBoxes as $checkedCheckbox) {
-    //             $this->db->drop_column('messages', $checkedCheckbox);
-    //         }
-
-    //         // Refresh the data
-    //         $data = $this->view->lister();
-    //     }
-
-    //     // Return the data
-    //     return view('listeMessage', ['data' => $data]);
-
-    // }
+    public function supprimer()  //pas encore d'historique message
+    {
+        $checkBoxSupprimer = $this->request->getPost("checkboxSupprimer");
+        $messageModel = new MessageModel();
+        try {
+            foreach ($checkBoxSupprimer as $currIdMessage) {
+                $messageModel->delete(["IDMESSAGE" => $currIdMessage]);
+            }
+        
+            return Utilitaires::success("messages supprimes avec succes");
+        } catch (\Exception $err) {
+            ;
+            return Utilitaires::error('Erreur lors de la suppression');
+        }
+    }
 
 
     public function lister(): string
@@ -91,7 +82,7 @@ class Message extends BaseController
     public function creer()
     {
         $dataUpload = $this->upload();
-
+        if(!isset($dataUpload['isOk'])) return Utilitaires::error("Il faut mettre une image");
         if ($dataUpload['isOk']) {
             $relativePath = $dataUpload['path'];
             $data = [
@@ -101,8 +92,26 @@ class Message extends BaseController
                 'imageMessage' => $relativePath,
                 'enLigne' => !empty($this->request->getPost('enLigne')),
             ];
-            $messageModel = new MessageModel();
-            $messageModel->insert($data);
+            try {
+                $messageModel = new MessageModel();
+                $idCurrMessage = $messageModel->insert($data);
+
+                try {
+                    $historiqueMessageModel = new HistoriqueMessageModel();
+                    $ligneHistoriqueMessage = [
+                        //"DATEHISTORIQUEMESSAGE" ajoute tout seul dans db
+                        "IDUTILISATEUR" => $data["idUtilisateur"],
+                        "IDMESSAGE" => $idCurrMessage,
+                        "TITREHISTORIQUEMESSAGE" => $data["titreMessage"],
+                        "CONTENUHISTORIQUEMESSAGE" => $data['contenuMessage'],
+                    ];
+                    $historiqueMessageModel->insert($ligneHistoriqueMessage);
+                } catch (\Throwable $th) {
+                    return Utilitaires::error('Erreur serveur lors de l ajout historique message');
+                }
+            } catch (\Exception $err) {
+                Utilitaires::error("Erreur serveur lors de l'ajout du message");
+            }
             return Utilitaires::success('Message créé avec succès');
         } else {
             return Utilitaires::error($dataUpload['error']);

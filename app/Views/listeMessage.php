@@ -1,5 +1,6 @@
 <?php
 use App\Controllers\Message;
+
 /**
  * @var CodeIgniter\View\View $this
  */
@@ -24,11 +25,10 @@ use App\Controllers\Message;
 <body>
     <div class="container">
         <h1>Listes des messages</h1>
-        <div class="table-responsive">
+        <form action="/supprimer-message" method="POST" class="table-responsive">
             <table class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Id</th>
                         <th>Titre</th>
                         <th>Contenu</th>
                         <th>image</th>
@@ -40,19 +40,14 @@ use App\Controllers\Message;
                     <?php foreach ($data as $message): ?>
                         <tr>
                             <td>
-                                <?= $message['IDMESSAGE']; ?>
-                            </td>
-                            <td>
                                 <?= $message['TITREMESSAGE']; ?>
                             </td>
                             <td>
                                 <?= $message['CONTENUMESSAGE']; ?>
                             </td>
                             <td>
-                                <a
-                                href='<?= base_url('images/'.$message['IMAGEMESSAGE']) ?>'
-                                target='_blank'
-                                >Voir l'image</a>
+                                <a href='<?= base_url('images/' . $message['IMAGEMESSAGE']) ?>' target='_blank'>Voir
+                                    l'image</a>
                             </td>
                             <td>
                                 <?php if ($message['ENLIGNE'] == 0): ?>
@@ -61,14 +56,22 @@ use App\Controllers\Message;
                                     En ligne
                                 <?php endif; ?>
                             </td>
-                            <td><input type="checkbox" name="checkbox[]" value="<?= $message['IDMESSAGE']; ?>"> Supprimer
+                            <td>
+                                <label for="inputSupprimer<?= $message['IDMESSAGE'] ?>">
+                                    <input 
+                                    type="checkbox" 
+                                    name="checkboxSupprimer[]" 
+                                    value="<?= $message['IDMESSAGE']; ?>"
+                                        id="inputSupprimer<?= $message['IDMESSAGE'] ?>">
+                                    Supprimer
+                                </label>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <button type="submit" name="submit">Valider</button>
-        </div>
+            <input type="submit" name="submit" value="Supprimer" />
+        </form>
     </div>
 </body>
 
