@@ -62,6 +62,7 @@ class Message extends BaseController
                 $historiqueMessageModel->where(["IDMESSAGE" => $currIdMessage]) -> delete();
             }
             $messageModel->delete(["IDMESSAGE" => $currIdMessage]);
+            
         
             return Utilitaires::success("messages supprimes avec succes");
         } catch (\Exception $err) {
