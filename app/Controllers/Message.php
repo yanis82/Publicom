@@ -16,7 +16,12 @@ class Message extends BaseController
     }
     public function modifierForm($idMessage): string
     {
-        return view('message/modifierForm', ['idMessage' => $idMessage]);
+        $message = $this -> messageModel ->where(['idMessage' => $idMessage])->first();
+        if(!$message){
+            Utilitaires::error('Ce message n\'existe pas');
+            return $this -> lister();
+        }
+        return view('message/modifierForm', $message);
     }
 
     public function modifier()
@@ -24,7 +29,7 @@ class Message extends BaseController
         $inputValues = [
             "titre" => $this->request->getPost("titre"),
             "message" => $this->request->getPost("message"),
-            "enLigne" => $this->request->getPost("tienLigne"),
+            "enLigne" => $this->request->getPost("enLigne"),
             "image" => $this->request->getFile("imageBackground"),
             "idMessage" => $this->request->getPost("idMessage"),
         ];
@@ -39,15 +44,12 @@ class Message extends BaseController
 
             if ($dataUpload['isOk']) {
                 $inputValuesToUpdate['imageMessage'] = $dataUpload['path'];
-                return Utilitaires::success('Message modifié avec succès');
-            } else {
-                return Utilitaires::error($dataUpload['error']);
             }
-
         }
+        $inputValuesToUpdate['enLigne'] = (bool)$inputValues['enLigne'];
 
         $this->messageModel->update(['idMessage' => $inputValues['idMessage']], $inputValuesToUpdate);
-        return json_encode(['inputValues' => $inputValues, 'inputToUpdate' => $inputValuesToUpdate]);
+        return Utilitaires::success('reussi avec  succes', 'liste-messages');
     }
 
     public function supprimer()  //pas encore d'historique message
@@ -57,14 +59,12 @@ class Message extends BaseController
         try {
             $historiqueMessageModel = new HistoriqueMessageModel();
             foreach ($checkBoxSupprimer as $currIdMessage) {
-                $historiqueMessageModel->delete(["IDMESSAGE" => $currIdMessage]);
-                
-                $messageModel->delete(["IDMESSAGE" => $currIdMessage]);
+                $historiqueMessageModel->where(["IDMESSAGE" => $currIdMessage]) -> delete();
             }
+            $messageModel->delete(["IDMESSAGE" => $currIdMessage]);
         
             return Utilitaires::success("messages supprimes avec succes");
         } catch (\Exception $err) {
-            ;
             return Utilitaires::error('Erreur lors de la suppression');
         }
     }
@@ -85,7 +85,8 @@ class Message extends BaseController
     public function creer()
     {
         $dataUpload = $this->upload();
-        if(!isset($dataUpload['isOk'])) return Utilitaires::error("Il faut mettre une image");
+        if (!isset($dataUpload['isOk']))
+            return Utilitaires::error("Il faut mettre une image");
         if ($dataUpload['isOk']) {
             $relativePath = $dataUpload['path'];
             $data = [
@@ -139,7 +140,7 @@ class Message extends BaseController
         if (!$this->validate($validationRule)) {
             $dataValidator = $this->validator->getErrors();
             // return json_encode($dataValidator);
-            return json_encode(['isOk' => false, 'error' => 'Le fichier n \'est pas une image']);
+            return ['isOk' => false, 'error' => 'Le fichier n \'est pas une image'];
         }
 
         $img = $this->request->getFile('imageBackground');

@@ -33,6 +33,7 @@ use App\Controllers\Message;
                         <th>Contenu</th>
                         <th>image</th>
                         <th>Statut</th>
+                        <th>modifier</th>
                         <th>Supprimer</th>
                     </tr>
                 </thead>
@@ -55,6 +56,9 @@ use App\Controllers\Message;
                                 <?php else: ?>
                                     En ligne
                                 <?php endif; ?>
+                            </td>
+                            <td>
+                                <a href="<?= site_url('/modifier-message/'.$message['IDMESSAGE']) ?>" > modifier </a>
                             </td>
                             <td>
                                 <label for="inputSupprimer<?= $message['IDMESSAGE'] ?>">
