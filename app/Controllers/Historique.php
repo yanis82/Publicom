@@ -2,10 +2,23 @@
 
 namespace App\Controllers;
 
+use App\Models\MessageModel;
+
 class Historique extends BaseController
 {
-    public function lister($idMessage): string
+    private $messageModel;
+
+    public function __construct()
     {
-        return '<h1> id employe : '.$idMessage.'</h1>';
+        $this->messageModel = new MessageModel();
+    }
+    public function lister($idHistoriquemessage): string
+    {
+        $historiquemessage = $this->messageModel->where(['idMessage' => $idHistoriquemessage])->first();
+        if (!$historiquemessage) {
+            Utilitaires::error('Ce message n\'existe pas');
+            return $this->lister();
+        }
+        return view('message/lister', ['historiquemessage' => $historiquemessage]);
     }
 }

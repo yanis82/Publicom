@@ -41,25 +41,7 @@ $user = session()->get('isConnected');
                 </section>
             <?php endif; ?>
 
-            <?php if (Utilisateur::isConnected()): ?>
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Connecte en tant que :</h5>
-                        <p class="card-text text-center">
-                            <?= $user['PRENOMUTILISATEUR'] ?>
-                            <?= $user['NOMUTILISATEUR'] ?>
-                        </p>
-                        <a href="/logout" class="btn btn-primary">Logout</a>
-                    </div>
-                </div>
 
-            <?php else: ?>
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">pas connecte :</h5>
-                    </div>
-                </div>
-            <?php endif; ?>
         </aside>
 
         <h1>
@@ -71,26 +53,44 @@ $user = session()->get('isConnected');
 
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Barre de navigation</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <a class="nav-link active" aria-current="page" href="/creer-utilisateur">Creer
-                                utilisateur</a>
-                            <a class="nav-link active" aria-current="page" href="/se-connecter">Se connecter</a>
-                            <a class="nav-link active" aria-current="page" href="/creer-message">Creer message</a>
-                            <a class="nav-link active" aria-current="page" href="/liste-messages">liste-messages</a>
-                            <a class="nav-link active" aria-current="page" href="/liste-messages">liste-messages</a>
-                            <a class="nav-link active" aria-current="page" href="/visualiser-messages-actifs">Visualiser</a>
-                            <a class="nav-link active" aria-current="page" href="#">Déconnexion</a>
+                    
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        
+                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                            aria-expanded="false" aria-label="Toggle navigation">
+
+                            <span class="navbar-toggler-icon"></span>
+                            
+                        </button>
+                        
+                        <div class="collapse navbar-collapse sticky-lg-top" id="navbarNavAltMarkup">
+                            
+                            <div class="navbar-nav ">
+                                <a class="nav-link active" aria-current="page" href="/creer-utilisateur">Creer
+                                    utilisateur</a>
+                                <a class="nav-link active" aria-current="page" href="/se-connecter">Se connecter</a>
+                                <a class="nav-link active" aria-current="page" href="/creer-message">Creer message</a>
+                                <a class="nav-link active" aria-current="page" href="/liste-messages">liste-messages</a>
+                                <a class="nav-link active" aria-current="page" href="/liste-messages">liste-messages</a>
+                                <a class="nav-link active" aria-current="page"
+                                    href="/visualiser-messages-actifs">Visualiser</a>
+                                <a class="nav-link active" aria-current="page" href="#">Déconnexion</a>
+
+                            </div>
 
                         </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <?php if (Utilisateur::isConnected()): ?>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" class="btn btn-primary me-md-2">
+                                    <?= $user['PRENOMUTILISATEUR'] ?>
+                                    <?= $user['NOMUTILISATEUR'] ?>
+                                </button>
+                            <?php endif; ?>
 
+                            <a href="/logout" class="btn btn-primary me-md-2">Logout</a>
+                        </div>
                     </div>
-                </div>
             </nav>
         </div>
     </header>
