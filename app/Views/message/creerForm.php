@@ -26,28 +26,63 @@
                 </div>
                 <div>
                     <label for="policeTitre" class="form-label">Police titre</label>
-                    <input type="textarea" name="policeTitre" id="policeTitre" class="form-control" style="height: 200px"
-                        required>
+                    <select id="policeTitre" name="policeTitre">
+                        <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+                        <option value="Arial Narrow">Arial Narrow</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Courier">Courier</option>
+                        <option value="Gill Sans">Gill Sans</option>
+                        <option value="Gill Sans MT">Gill Sans MT</option>
+                        <option value="Calibri">Calibri</option>
+                        <option value="Trebuchet MS">Trebuchet MS</option>
+                        <option value="Lucida Sans">Lucida Sans</option>
+                        <option value="Lucida Grande">Lucida Grande</option>
+                        <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Times">Times</option>
+                        <option value="Impact">Impact</option>
+                        <option value="Haettenschweiler">Haettenschweiler</option>
+                        <option value="Arial Narrow Bold">Arial Narrow Bold</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Geneva">Geneva</option>
+                        <option value="Tahoma">Tahoma</option>
+                    </select>
+
                 </div>
                 <div>
-                    <label for="tailleTitre" class="form-label">Taille titre</label>
-                    <input type="textarea" name="tailleTitre" id="tailleTitre" class="form-control" style="height: 200px"
-                        required>
+                    <label for="policeMessage" class="form-label">Police message</label>
+                    <select id="policeMessage" name="policeMessage">
+                        <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+                        <option value="Arial Narrow">Arial Narrow</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Courier">Courier</option>
+                        <option value="Gill Sans">Gill Sans</option>
+                        <option value="Gill Sans MT">Gill Sans MT</option>
+                        <option value="Calibri">Calibri</option>
+                        <option value="Trebuchet MS">Trebuchet MS</option>
+                        <option value="Lucida Sans">Lucida Sans</option>
+                        <option value="Lucida Grande">Lucida Grande</option>
+                        <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Times">Times</option>
+                        <option value="Impact">Impact</option>
+                        <option value="Haettenschweiler">Haettenschweiler</option>
+                        <option value="Arial Narrow Bold">Arial Narrow Bold</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Geneva">Geneva</option>
+                        <option value="Tahoma">Tahoma</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="tailleContenuTitre" class="form-label">Taille titre</label>
+                    <input type="number" name="tailleContenuTitre" id="tailleContenuTitre" class="form-control" value="14" required>
                 </div>
                 <div>
-                    <label for="tailleContenuMessage" class="form-label">Taille message</label>
-                    <input type="textarea" name="tailleContenuMessage" id="tailleContenuMessage" class="form-control" style="height: 200px"
-                        required>
-                </div>
-                <div>
-                    <label for="policeContenuMessage" class="form-label">Police message</label>
-                    <input type="textarea" name="policeContenuMessage" id="policeContenuMessage" class="form-control" style="height: 200px"
-                        required>
-                </div>
-                <div>
-                    <label for="tailleMessage" class="form-label">Taille message</label>
-                    <input type="textarea" name="tailleMessage" id="tailleMessage" class="form-control" style="height: 200px"
-                        required>
+                    <label for="policeContenuMessage" class="form-label">Taille message</label>
+                    <input type="number" name="policeContenuMessage" id="policeContenuMessage" class="form-control" value="14" required>
                 </div>
 
                 <div class="form-check form-switch">
