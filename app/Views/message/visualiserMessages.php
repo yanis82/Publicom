@@ -5,41 +5,41 @@ use App\Controllers\Message;
  * @var CodeIgniter\View\View $this
  */
 ?>
+<!DOCTYPE html>
+<html lang="fr">
 
-<?= $this->extend('default') ?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/inc/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <title>
+        <?= $this->renderSection('title') ?>
+    </title>
+</head>
 
-<?= $this->section('titre') ?>
-Visualiser Messages
-<?= $this->endSection() ?>
-
-<?= $this->section('main') ?>
-<div class="container">
-    <h1>Visualiser Messages</h1>
-
-
-
-    <section class="carousel" aria-label="Gallery">
-        <ol class="carousel__viewport">
+<body>
+    <div id="cadreVisu">
+        <button id="backButton">←</button>
+        <section id="containerVisu" class="carousel" aria-label="Gallery">
             <?php foreach ($data as $key => $message): ?>
-                <!-- <div class="carousel-item active">
-                    <img class="d-block w-100" src="<?= base_url('images/' . $message['IMAGEMESSAGE']) ?>" alt="slide">
-                </div> -->
-                <li id="carousel__slide<?= $key ?>" tabindex="0" class="carousel__slide">
-                    <div class="carousel__snapper">
-                        <p><?= $key ?></p>
-                        <p>count<?= count($data) ?></p>
-                        <p>suiv : <?= $key + 1 >= count($data) ? 0 : $key +1 ?></p>
-                        <a href="#carousel__slide<?= $key - 1 <= -1 ? count($data)-1 : $key-1 ?>" class="carousel__prev">Go
-                            to last slide</a>
-                        <a href="#carousel__slide<?= $key + 1 >= count($data) ? 0 : $key +1 ?>" class="carousel__next">Go to next slide</a>
-                    </div>
-                </li>
+                <div class="itemVisu" style="background-image : url('<?= base_url('images/'. $message['IMAGEMESSAGE'] )?>')">
+                    <h2 class="titreVisu">
+                        <?= $message['TITREMESSAGE'] ?>
+                    </h2>
+                    <p class="contenuVisu">
+                        <?= $message['CONTENUMESSAGE'] ?>
+                    </p>
+                </div>
             <?php endforeach; ?>
+        </section>
+        <button id="nextButton">→</button>
+    </div>
+    <script src="inc/js/visualiser.js"></script>
+</body>
 
-        </ol>
-
-        <!-- <div id="visualiserContainer">
-        
-    </div> -->
-</div>
-<?= $this->endSection() ?>
+</html>

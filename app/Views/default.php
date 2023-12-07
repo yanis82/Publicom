@@ -53,33 +53,31 @@ $user = session()->get('isConnected');
 
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Barre de navigation</a>
-                    
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        
-                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-                            aria-expanded="false" aria-label="Toggle navigation">
 
-                            <span class="navbar-toggler-icon"></span>
-                            
-                        </button>
-                        
-                        <div class="collapse navbar-collapse sticky-lg-top" id="navbarNavAltMarkup">
-                            
-                            <div class="navbar-nav ">
-                                <a class="nav-link active" aria-current="page" href="/creer-utilisateur">Creer
-                                    utilisateur</a>
-                                <a class="nav-link active" aria-current="page" href="/se-connecter">Se connecter</a>
-                                <a class="nav-link active" aria-current="page" href="/creer-message">Creer message</a>
-                                <a class="nav-link active" aria-current="page" href="/liste-messages">liste-messages</a>
-                                <a class="nav-link active" aria-current="page" href="/liste-messages">liste-messages</a>
-                                <a class="nav-link active" aria-current="page"
-                                    href="/visualiser-messages-actifs">Visualiser</a>
-                                <a class="nav-link active" aria-current="page" href="#">Déconnexion</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
 
-                            </div>
+                        <span class="navbar-toggler-icon"></span>
+
+                    </button>
+
+                    <div class="collapse navbar-collapse sticky-lg-top" id="navbarNavAltMarkup">
+
+                        <div class="navbar-nav ">
+                            <a class="nav-link active" aria-current="page" href="/creer-utilisateur">Creer
+                                utilisateur</a>
+                            <a class="nav-link active" aria-current="page" href="/se-connecter">Se connecter</a>
+                            <a class="nav-link active" aria-current="page" href="/creer-message">Creer message</a>
+                            <a class="nav-link active" aria-current="page" href="/liste-messages">liste-messages</a>
+                            <a class="nav-link active" aria-current="page"
+                                   target="_blank" href="/visualiser-messages-actifs">Visualiser</a>
+                            <a class="nav-link active" aria-current="page" href="#">Déconnexion</a>
 
                         </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <?php if (Utilisateur::isConnected()): ?>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <button type="button" class="btn btn-primary me-md-2">
@@ -105,8 +103,8 @@ $user = session()->get('isConnected');
 
                 </ul>
             </div>
+        </footer>
     </div>
-    </footer>
 
 </body>
 

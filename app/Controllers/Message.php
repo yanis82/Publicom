@@ -82,10 +82,11 @@ class Message extends BaseController
     public function visualiserActifs(): string
     {
         $messageModel = new MessageModel();
-        $data = $messageModel-> where([
+        $data = $messageModel->where([
             'ENLIGNE' => true,
-        ]) ->findAll();
-
+        ])->findAll();
+        // echo json_encode($data);
+        // die;
         return view('/message/visualiserMessages', ['data' => $data]);
     }
 
@@ -121,13 +122,14 @@ class Message extends BaseController
                         "CONTENUHISTORIQUEMESSAGE" => $data['contenuMessage'],
                     ];
                     $historiqueMessageModel->insert($ligneHistoriqueMessage);
+                    return Utilitaires::success("Message cree avec succes", "/liste-messages");
                 } catch (\Throwable $th) {
                     return Utilitaires::error('Erreur serveur lors de l ajout historique message');
                 }
             } catch (\Exception $err) {
-                Utilitaires::error("Erreur serveur lors de l'ajout du message");
+                return Utilitaires::error("Erreur serveur lors de l'ajout du message");
             }
-            return Utilitaires::success('Message créé avec succès');
+            // return Utilitaires::success('Message créé avec succès');
         } else {
             return Utilitaires::error($dataUpload['error']);
         }
@@ -184,15 +186,15 @@ class Message extends BaseController
 
     public function historique($idHistoriquemessage)
     {
-        $historiquemessage = $this->HistoriquemessageModel->where(['IDMESSAGE' => $idHistoriquemessage]) -> findAll();
+        $historiquemessage = $this->HistoriquemessageModel->where(['IDMESSAGE' => $idHistoriquemessage])->findAll();
         if (!$historiquemessage) {
             Utilitaires::error('Ce message n\'existe pas');
             return $this->lister();
         }
         echo json_encode($historiquemessage);
-        return ;
+        return;
         return view('/message/historiqueMessage', ['data' => $historiquemessage]);
     }
-   
+
 
 }
