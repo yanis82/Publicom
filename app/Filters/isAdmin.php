@@ -13,7 +13,7 @@ class isAdmin implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if(!Utilisateur::isAdmin()){
-            return Utilitaires::error(('Connectez vous en tant qu\'administrateur'));
+            return Utilitaires::error('Connectez vous en tant qu\'administrateur', '/se-connecter');
         }
     }
 
