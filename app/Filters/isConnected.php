@@ -13,7 +13,7 @@ class isConnected implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if(!Utilisateur::isConnected()){
-            return Utilitaires::error(('Connectez vous avant d\'acceder a la dite page'));
+            return Utilitaires::error('Connectez vous avant d\'acceder a la dite page', '/se-connecter');
         }
     }
 

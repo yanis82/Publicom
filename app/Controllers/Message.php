@@ -16,10 +16,10 @@ class Message extends BaseController
     }
     public function modifierForm($idMessage): string
     {
-        $message = $this -> messageModel ->where(['idMessage' => $idMessage])->first();
-        if(!$message){
+        $message = $this->messageModel->where(['idMessage' => $idMessage])->first();
+        if (!$message) {
             Utilitaires::error('Ce message n\'existe pas');
-            return $this -> lister();
+            return $this->lister();
         }
         return view('message/modifierForm', $message);
     }
@@ -46,7 +46,7 @@ class Message extends BaseController
                 $inputValuesToUpdate['imageMessage'] = $dataUpload['path'];
             }
         }
-        $inputValuesToUpdate['enLigne'] = (bool)$inputValues['enLigne'];
+        $inputValuesToUpdate['enLigne'] = (bool) $inputValues['enLigne'];
 
         $this->messageModel->update(['idMessage' => $inputValues['idMessage']], $inputValuesToUpdate);
         return Utilitaires::success('reussi avec  succes', 'liste-messages');
@@ -59,11 +59,11 @@ class Message extends BaseController
         try {
             $historiqueMessageModel = new HistoriqueMessageModel();
             foreach ($checkBoxSupprimer as $currIdMessage) {
-                $historiqueMessageModel->where(["IDMESSAGE" => $currIdMessage]) -> delete();
+                $historiqueMessageModel->where(["IDMESSAGE" => $currIdMessage])->delete();
             }
             $messageModel->delete(["IDMESSAGE" => $currIdMessage]);
-            
-        
+
+
             return Utilitaires::success("messages supprimes avec succes");
         } catch (\Exception $err) {
             return Utilitaires::error('Erreur lors de la suppression');
@@ -77,6 +77,16 @@ class Message extends BaseController
         $data = $messageModel->findAll();
 
         return view('listeMessage', ['data' => $data]);
+    }
+
+    public function visualiserActifs(): string
+    {
+        $messageModel = new MessageModel();
+        $data = $messageModel-> where([
+            'ENLIGNE' => true,
+        ]) ->findAll();
+
+        return view('/message/visualiserMessages', ['data' => $data]);
     }
 
     public function creerForm()
