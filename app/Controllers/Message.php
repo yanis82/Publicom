@@ -182,4 +182,17 @@ class Message extends BaseController
 
     }
 
+    public function historique($idHistoriquemessage)
+    {
+        $historiquemessage = $this->HistoriquemessageModel->where(['IDMESSAGE' => $idHistoriquemessage]) -> findAll();
+        if (!$historiquemessage) {
+            Utilitaires::error('Ce message n\'existe pas');
+            return $this->lister();
+        }
+        echo json_encode($historiquemessage);
+        return ;
+        return view('/message/historiqueMessage', ['data' => $historiquemessage]);
+    }
+   
+
 }

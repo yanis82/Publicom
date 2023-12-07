@@ -29,7 +29,7 @@ $routes -> post('/modifier-message', 'Message::modifier', ['filter' => 'isConnec
 
 $routes -> post('/supprimer-message', 'Message::supprimer', ['filter' => 'isConnected']); // supprimer message
 
-$routes -> get('/historique-message/(:num)', 'Historique::lister/$1', ['filter' => 'isConnected']); //historique d'un message
+$routes -> get('/historique-message/(:num)', 'Message::historique/$1', ['filter' => 'isConnected']); //historique d'un message
 $routes -> get('/test-dev', 'Utilisateur::testDev', ['filter' => 'isConnected']); //historique d'un message
 
 

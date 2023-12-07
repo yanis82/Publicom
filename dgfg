@@ -1,0 +1,137 @@
+[33mcommit 95d7f1546af18fcf4e08a01a26f7cea35ec39d51[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: lucas <you@example.com>
+Date:   Thu Nov 30 11:42:30 2023 +0100
+
+    ajouter et suppr
+
+[33mcommit baeebc864e0c64fd3742802794835d06e91ca480[m
+Author: lucas <you@example.com>
+Date:   Thu Nov 30 11:40:43 2023 +0100
+
+    modifier et supprimer ok
+
+[33mcommit b8a244d931be8d5ff93f5160211e9d1d107d866d[m
+Author: Lucas <08.lucas.sanchez@gmail.com>
+Date:   Thu Nov 23 20:29:57 2023 +0100
+
+    isAdmin filtre
+
+[33mcommit a90529ce852ce47e695d8eade97bf904c77ea882[m
+Author: lucas <you@example.com>
+Date:   Thu Nov 23 12:03:59 2023 +0100
+
+    erreur fk historique supprimer
+
+[33mcommit c6e19472743fbfa0b3af5d137a1aad6afc518a8c[m
+Author: lucas <you@example.com>
+Date:   Thu Nov 23 10:58:11 2023 +0100
+
+    Supprimer message ok | Historique message quand on cree message
+
+[33mcommit 84c22b9be13e57fc471faa14017d8dc9d718fbcd[m
+Author: lucas <you@example.com>
+Date:   Thu Nov 16 12:05:57 2023 +0100
+
+    message modifier mauvais path image
+
+[33mcommit 35c2be70484c9d96956ab370a05ec7c7c19af89a[m
+Author: Yanis <yanous@gmail.com>
+Date:   Thu Nov 16 10:29:29 2023 +0100
+
+    fin de git
+
+[33mcommit 9b95fc38d4579945add51b5b116dad674be89098[m
+Author: Yanis <yanous@gmail.com>
+Date:   Thu Nov 16 09:28:29 2023 +0100
+
+    composer.lock
+
+[33mcommit bbf9d97c0103cfab31cdf98e863153cedba0c3c3[m
+Merge: 27a1c39 6e24c1b
+Author: Yanis <yanous@gmail.com>
+Date:   Thu Nov 16 09:26:08 2023 +0100
+
+    kkk
+
+[33mcommit 27a1c39c32d2f7e29fbe83e8853dbd9fb2380365[m
+Merge: 399b314 afcf1c3
+Author: Yanis <yanous@gmail.com>
+Date:   Thu Nov 16 09:18:01 2023 +0100
+
+    kkk
+
+[33mcommit 399b31446d7c90520aba21ca001edfd43cc83241[m
+Merge: 2c6cd4a 2f7291e
+Author: Yanis <yanous@gmail.com>
+Date:   Thu Nov 16 09:16:03 2023 +0100
+
+    kkk
+
+[33mcommit 6e24c1b132c71d8f13f9c4592e1303ad573ac308[m
+Merge: 2f7291e 2c6cd4a
+Author: Lucas SANCHEZ <l.sanchez@BTSSIO82.local>
+Date:   Thu Nov 16 09:14:18 2023 +0100
+
+    fix probleme utilisateurs et verifications en plus
+
+[33mcommit afcf1c36ad86c6c49ce0f8d75962fc7400e37cb8[m
+Merge: 2c6cd4a 2f7291e
+Author: Romain.D <delmas.romain8@outlook.fr>
+Date:   Thu Nov 16 09:05:18 2023 +0100
+
+    Merge branch 'master' of https://github.com/BTSSIO82-2022-2023/PubliCom1
+
+[33mcommit 2c6cd4a206a0cdd2133d395b0c3a2fbd2ca8e201[m
+Author: Romain.D <delmas.romain8@outlook.fr>
+Date:   Thu Nov 16 08:48:24 2023 +0100
+
+    the
+
+[33mcommit 2f7291ea49db8251ff571d917ecb4130586f7566[m
+Author: Lucas SANCHEZ <l.sanchez@BTSSIO82.local>
+Date:   Thu Nov 9 12:05:18 2023 +0100
+
+    email
+
+[33mcommit 1538ad997f2f9d4c1671e44fcf4f84bc8a97a2d7[m
+Author: Lucas <08.lucas.sanchez@gmail.com>
+Date:   Sat Oct 28 00:54:30 2023 +0200
+
+    creation message avec ajout de l image
+
+[33mcommit 25515d2bba098aa9b2928dabe848433fde0002af[m
+Author: Lucas <08.lucas.sanchez@gmail.com>
+Date:   Fri Oct 27 20:59:01 2023 +0200
+
+    creation utilisateur avec verification email, hashage des mots de passe, creation controlleur utilitaires pour erreurs et succes
+
+[33mcommit 7fd3f7099b9a920f1016dbb269f2d2124fd0f840[m
+Author: Lucas <08.lucas.sanchez@gmail.com>
+Date:   Fri Oct 27 18:42:21 2023 +0200
+
+    ajout filtres dasn les bonnes routes, filtre qui marche
+
+[33mcommit 250f119a7b03311277e6e3e27fef8e2f71501ca4[m
+Author: yanis <yanis@gmail.com>
+Date:   Fri Oct 27 17:37:03 2023 +0200
+
+    utilisateurs de lucas et messages de yanis
+
+[33mcommit b3a4967acd3d01554886c0c1353fbf4e467dccb3[m
+Merge: 51f14f4 3462b24
+Author: yanis <yanis@gmail.com>
+Date:   Fri Oct 27 17:32:42 2023 +0200
+
+    merging
+
+[33mcommit 3462b247cb1c16bcb11d44fc1e1423dc44d900c0[m
+Author: yanis <yanis@gmail.com>
+Date:   Fri Oct 27 16:59:07 2023 +0200
+
+    lsites messages view sans le crud
+
+[33mcommit 51f14f452af5bacccc94bb84eff4b541210b299b[m
+Author: Lucas <08.lucas.sanchez@gmail.com>
+Date:   Thu Oct 26 18:13:01 2023 +0200
+
+    connection creation utilisateur + filtre

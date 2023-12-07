@@ -14,17 +14,18 @@ use App\Controllers\Message;
 
 <?= $this->section('main') ?>
 <div class="container">
-    <h1>Listes des messages</h1>
+    <h1>Liste des messages</h1>
     <form action="/supprimer-message" method="POST" class="table-responsive">
         <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
                     <th>Titre</th>
                     <th>Contenu</th>
-                    <th>image</th>
+                    <th>Image</th>
                     <th>Statut</th>
-                    <th>modifier</th>
+                    <th>Modifier</th>
                     <th>Supprimer</th>
+                    <th>Historique</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,6 +57,9 @@ use App\Controllers\Message;
                                     id="inputSupprimer<?= $message['IDMESSAGE'] ?>">
                                 Supprimer
                             </label>
+                        </td>
+                        <td>
+                            <a href="<?= site_url('/historique-message/' . $message['IDMESSAGE']) ?>"> historique </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
