@@ -15,15 +15,19 @@ Visualiser Messages
 <?= $this->section('main') ?>
 <div class="container">
     <h1>Visualiser Messages</h1>
-    <?php foreach ($data as $message): ?>
-        <div id="visualiserContainer" style="background-image: url('<?= base_url('images/' . $message['IMAGEMESSAGE']) ?>')">
-            <h2>
-                <?= $message['TITREMESSAGE']; ?>
-            </h2>
-            <p>
-                <?= $message['CONTENUMESSAGE']; ?>
-            </p>
-        </div>
-    <?php endforeach; ?>
+    <div id="visualiserContainer"
+        >
+        <?php foreach ($data as $message): ?>
+            <div class="visualiserItem" style="background-image: url('<?= base_url('images/' . $message['IMAGEMESSAGE']) ?>')">
+
+                <h2>
+                    <?= $message['TITREMESSAGE']; ?>
+                </h2>
+                <p>
+                    <?= $message['CONTENUMESSAGE']; ?>
+                </p>
+            </div>
+        <?php endforeach; ?>
+    </div>
 </div>
 <?= $this->endSection() ?>
