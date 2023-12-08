@@ -15,6 +15,8 @@ use App\Controllers\Message;
 <?= $this->section('main') ?>
 <div class="container">
     <h1>Liste des messages</h1>
+    <a class="nav-link active" aria-current="page" target="_blank" href="/visualiser-messages-actifs">Visualiser</a>
+    <a class="nav-link active" aria-current="page" href="/creer-message">Creer message</a>
     <form action="/supprimer-message" method="POST" class="table-responsive">
         <table class="table table-bordered">
             <thead class="thead-dark">
@@ -22,6 +24,10 @@ use App\Controllers\Message;
                     <th>Titre</th>
                     <th>Contenu</th>
                     <th>Image</th>
+                    <th>taille titre</th>
+                    <th>taille message</th>
+                    <th>police titre</th>
+                    <th>police message</th>
                     <th>Statut</th>
                     <th>Modifier</th>
                     <th>Supprimer</th>
@@ -41,6 +47,20 @@ use App\Controllers\Message;
                             <a href='<?= base_url('images/' . $message['IMAGEMESSAGE']) ?>' target='_blank'>Voir
                                 l'image</a>
                         </td>
+
+                        <td>
+                            <?= $message['TAILLEPOLICETITRE'] ?>
+                        </td>
+                        <td>
+                            <?= $message['TAILLEPOLICECONTENU'] ?>
+                        </td>
+                        <td>
+                            <?= $message['TYPEPOLICETITRE'] ?>
+                        </td>
+                        <td>
+                            <?= $message['TYPEPOLICECONTENU'] ?>
+                        </td>
+
                         <td>
                             <?php if ($message['ENLIGNE'] == 0): ?>
                                 Hors ligne

@@ -51,8 +51,8 @@
 
                 </div>
                 <div>
-                    <label for="policeMessage" class="form-label">Police message</label>
-                    <select id="policeMessage" name="policeMessage">
+                    <label for="policeContenu" class="form-label">Police message</label>
+                    <select id="policeContenu" name="policeContenu">
                         <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
                         <option value="Arial Narrow">Arial Narrow</option>
                         <option value="Arial">Arial</option>
@@ -75,15 +75,29 @@
                         <option value="Tahoma">Tahoma</option>
                     </select>
                 </div>
-                
+
                 <div>
-                    <label for="tailleContenuTitre" class="form-label">Taille titre</label>
-                    <input type="number" name="tailleContenuTitre" id="tailleContenuTitre" class="form-control" value="14" required>
+                    <label for="alignementMessage" class="form-label">Alignement message</label>
+                    <select id="alignementMessage" name="alignementMessage">
+                        <option value="justify">Justifier</option>
+                        <option value="center">centrer</option>
+                        <option value="right">droite</option>
+                        <option value="left">gauche</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="policeTailleTitre" class="form-label">Taille titre</label>
+                    <input type="number" name="policeTailleTitre" id="policeTailleTitre" class="form-control" value="14"
+                        required>
                 </div>
                 <div>
-                    <label for="policeContenuMessage" class="form-label">Taille message</label>
-                    <input type="number" name="policeContenuMessage" id="policeContenuMessage" class="form-control" value="14" required>
+                    <label for="policeTailleContenu" class="form-label">Taille message</label>
+                    <input type="number" name="policeTailleContenu" id="policeTailleContenu" class="form-control"
+                        value="14" required>
                 </div>
+
+
 
                 <div class="form-check form-switch">
                     <input class="form-check-input" name="enLigne" type="checkbox" role="switch"
@@ -95,8 +109,8 @@
                     <input class="form-control" accept="image/*" name="imageBackground" type="file" id="formFile">
                 </div>
                 <div class="mb-3">
-
                     <input type="submit" value="Créer message" class="btn btn-primary">
+                </div>
             </form>
         </div>
     </div>

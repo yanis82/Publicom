@@ -95,7 +95,7 @@ $user = session()->get('isConnected');
     <main>
         <?= $this->renderSection('main') ?>
     </main>
-    <div class="fixed-bottom">
+    <!-- <div class="fixed-bottom">
         <footer class="footer mt-auto py-3 bg-dark text-white">
             <div class="container">
                 <span class="text-muted">Copyright &copy; Portfolio</span>
@@ -104,7 +104,7 @@ $user = session()->get('isConnected');
                 </ul>
             </div>
         </footer>
-    </div>
+    </div> -->
 
 </body>
 

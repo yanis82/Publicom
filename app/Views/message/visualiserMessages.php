@@ -27,11 +27,13 @@ use App\Controllers\Message;
         <button id="backButton">←</button>
         <section id="containerVisu" class="carousel" aria-label="Gallery">
             <?php foreach ($data as $key => $message): ?>
-                <div class="itemVisu" style="background-image : url('<?= base_url('images/'. $message['IMAGEMESSAGE'] )?>')">
-                    <h2 class="titreVisu">
+                <div class="itemVisu"
+                    style="background-image : url('<?= base_url('images/' . $message['IMAGEMESSAGE']) ?>');">
+                    <h2 class="titreVisu" style="font-size: <?= $message['TAILLEPOLICETITRE'] ?>px; font-family: <?= $message['TYPEPOLICETITRE'] ?>;">
                         <?= $message['TITREMESSAGE'] ?>
                     </h2>
-                    <p class="contenuVisu">
+                    <p class="contenuVisu" style="font-size: <?= $message['TAILLEPOLICECONTENU'] ?>px; font-family: <?= $message['TYPEPOLICECONTENU'] ?>; text-align: <?= $message['ALIGNEMENTMESSAGE'] ?>">
+
                         <?= $message['CONTENUMESSAGE'] ?>
                     </p>
                 </div>

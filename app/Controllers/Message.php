@@ -10,9 +10,11 @@ use CodeIgniter\I18n\Time;
 class Message extends BaseController
 {
     private $messageModel;
+    private $HistoriquemessageModel;
     public function __construct()
     {
         $this->messageModel = new MessageModel();
+        $this->HistoriquemessageModel = new HistoriqueMessageModel();
     }
     public function modifierForm($idMessage): string
     {
@@ -32,6 +34,11 @@ class Message extends BaseController
             "enLigne" => $this->request->getPost("enLigne"),
             "image" => $this->request->getFile("imageBackground"),
             "idMessage" => $this->request->getPost("idMessage"),
+            'taillePoliceTitre' => (int) $this->request->getPost('policeTailleTitre'),
+            'taillePoliceContenu' => (int) $this->request->getPost('policeTailleContenu'),
+            'typePoliceTitre' => $this->request->getPost('policeTitre'),
+            'typePoliceContenu' => $this->request->getPost('policeContenu'),
+            'alignementMessage' => $this->request->getPost('alignementMessage'),
         ];
         if ($inputValues['titre']) {
             $inputValuesToUpdate['titreMessage'] = $inputValues['titre'];
@@ -40,13 +47,29 @@ class Message extends BaseController
             $inputValuesToUpdate['contenuMessage'] = $inputValues['message'];
         }
         if ($inputValues['enLigne']) {
-            $dataUpload = $this->upload();
-
-            if ($dataUpload['isOk']) {
-                $inputValuesToUpdate['imageMessage'] = $dataUpload['path'];
-            }
+            $inputValuesToUpdate['enLigne'] = (bool) $inputValues['enLigne'];
         }
-        $inputValuesToUpdate['enLigne'] = (bool) $inputValues['enLigne'];
+        $dataUpload = $this->upload();
+
+        if ($dataUpload['isOk']) {
+            $inputValuesToUpdate['imageMessage'] = $dataUpload['path'];
+        }
+
+        if ($inputValues['taillePoliceTitre']) {
+            $inputValuesToUpdate['taillePoliceTitre'] = (int) $inputValues['taillePoliceTitre'];
+        }
+        if ($inputValues['taillePoliceContenu']) {
+            $inputValuesToUpdate['taillePoliceContenu'] = (int) $inputValues['taillePoliceContenu'];
+        }
+        if ($inputValues['typePoliceTitre']) {
+            $inputValuesToUpdate['typePoliceTitre'] = $inputValues['typePoliceTitre'];
+        }
+        if ($inputValues['typePoliceContenu']) {
+            $inputValuesToUpdate['typePoliceContenu'] = $inputValues['typePoliceContenu'];
+        }
+        if ($inputValues['alignementMessage']) {
+            $inputValuesToUpdate['alignementMessage'] = $inputValues['alignementMessage'];
+        }
 
         $this->messageModel->update(['idMessage' => $inputValues['idMessage']], $inputValuesToUpdate);
         return Utilitaires::success('reussi avec  succes', 'liste-messages');
@@ -56,12 +79,13 @@ class Message extends BaseController
     {
         $checkBoxSupprimer = $this->request->getPost("checkboxSupprimer");
         $messageModel = new MessageModel();
+
         try {
             $historiqueMessageModel = new HistoriqueMessageModel();
             foreach ($checkBoxSupprimer as $currIdMessage) {
                 $historiqueMessageModel->where(["IDMESSAGE" => $currIdMessage])->delete();
+                $messageModel->delete(["IDMESSAGE" => $currIdMessage]);
             }
-            $messageModel->delete(["IDMESSAGE" => $currIdMessage]);
 
 
             return Utilitaires::success("messages supprimes avec succes");
@@ -107,25 +131,17 @@ class Message extends BaseController
                 'contenuMessage' => $this->request->getPost('message'),
                 'imageMessage' => $relativePath,
                 'enLigne' => !empty($this->request->getPost('enLigne')),
+                'taillePoliceTitre' => (int) $this->request->getPost('policeTailleTitre'),
+                'taillePoliceContenu' => (int) $this->request->getPost('policeTailleContenu'),
+                'typePoliceTitre' => $this->request->getPost('policeTitre'),
+                'typePoliceContenu' => $this->request->getPost('policeContenu'),
+                'alignementMessage' => $this->request->getPost('alignementMessage'),
             ];
             try {
                 $messageModel = new MessageModel();
-                $idCurrMessage = $messageModel->insert($data);
-
-                try {
-                    $historiqueMessageModel = new HistoriqueMessageModel();
-                    $ligneHistoriqueMessage = [
-                        //"DATEHISTORIQUEMESSAGE" ajoute tout seul dans db
-                        "IDUTILISATEUR" => $data["idUtilisateur"],
-                        "IDMESSAGE" => $idCurrMessage,
-                        "TITREHISTORIQUEMESSAGE" => $data["titreMessage"],
-                        "CONTENUHISTORIQUEMESSAGE" => $data['contenuMessage'],
-                    ];
-                    $historiqueMessageModel->insert($ligneHistoriqueMessage);
-                    return Utilitaires::success("Message cree avec succes", "/liste-messages");
-                } catch (\Throwable $th) {
-                    return Utilitaires::error('Erreur serveur lors de l ajout historique message');
-                }
+                $messageModel->insert($data);
+                return Utilitaires::success("Message cree avec succes", "/liste-messages");
+                // historisation avec les triggers mysql
             } catch (\Exception $err) {
                 return Utilitaires::error("Erreur serveur lors de l'ajout du message");
             }
@@ -189,10 +205,7 @@ class Message extends BaseController
         $historiquemessage = $this->HistoriquemessageModel->where(['IDMESSAGE' => $idHistoriquemessage])->findAll();
         if (!$historiquemessage) {
             Utilitaires::error('Ce message n\'existe pas');
-            return $this->lister();
         }
-        echo json_encode($historiquemessage);
-        return;
         return view('/message/historiqueMessage', ['data' => $historiquemessage]);
     }
 

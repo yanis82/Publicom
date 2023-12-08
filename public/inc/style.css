@@ -9,6 +9,7 @@ aside {
   justify-content: end;
 }
 .notification {
+  z-index: 999;
   position: fixed;
   top: 5px;
   left: 10px;
@@ -16,9 +17,9 @@ aside {
   border-radius: 7px;
   margin: 5px;
   padding: 5px;
-  -webkit-animation: slide-out-top 0.25s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+  -webkit-animation: slide-out-top 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53)
     2s both;
-  animation: slide-out-top 0.25s cubic-bezier(0.55, 0.085, 0.68, 0.53) 2s both;
+  animation: slide-out-top 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53) 2s both;
 }
 
 .success {
@@ -69,7 +70,7 @@ aside {
   max-height: 100%;
   max-width: 100%;
   overflow: hidden;
-  background-color: #df9f9f;
+  /* background-color: #df9f9f; */
   aspect-ratio: 120 / 176;
   margin: auto;
   border-radius: 7px;
@@ -82,6 +83,12 @@ aside {
 }
 
 .itemVisu {
+  padding-top: 5%;
+  display: flex;
+  flex-flow: column;
+  justify-content: start;
+  align-items: center;
+
   box-sizing: border-box;
   height: 100%;
   width: 100%;
@@ -91,8 +98,15 @@ aside {
   background-size: cover;
 }
 .titreVisu, .contenuVisu {
+  padding: 0 3px 5px 3px;
+  border-radius: 7px;
   text-align: center;
   text-wrap: wrap;
+  background: #ffffff70;
+  color: black;
+}
+.contenuVisu {
+  width: 80%;
 }
 #backButton, #nextButton {
   position: absolute;

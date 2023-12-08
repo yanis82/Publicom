@@ -13,13 +13,7 @@ class HistoriqueMessageModel extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = [
-        "IDMESSAGE",
-        "IDUTILISATEUR",
-        "DATEHISTORIQUEMESSAGE",
-        "TITREHISTORIQUEMESSAGE",
-        "CONTENUHISTORIQUEMESSAGE"
-    ];
+    protected $allowedFields = ["IDHISTORIQUEMESSAGE", "IDMESSAGE", "IDUTILISATEUR", "DATEHISTORIQUEMESSAGE", "TITREHISTORIQUEMESSAGE", "CONTENUHISTORIQUEMESSAGE", "TAILLEPOLICECONTENU", "TAILLEPOLICETITRE", "TYPEPOLICETITRE", "TYPEPOLICECONTENU", "ENLIGNE", "TYPEMODIFICATION", "IMAGEMESSAGE"];
 
     // Dates
     protected $useTimestamps = false;

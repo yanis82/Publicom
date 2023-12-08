@@ -6,12 +6,23 @@ use CodeIgniter\Model;
 
 class MessageModel extends Model
 {
-    protected $DBGroup          = 'default';
-    protected $table            = 'message';
-    protected $primaryKey       = 'idMessage';
+    protected $DBGroup = 'default';
+    protected $table = 'message';
+    protected $primaryKey = 'idMessage';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = ['idUtilisateur', 'titreMessage', 'contenuMessage', 'imageMessage', 'enLigne'];
+    protected $returnType = 'array';
+    protected $useSoftDeletes = false;
+    protected $protectFields = true;
+    protected $allowedFields = [
+        'idUtilisateur',
+        'titreMessage',
+        'contenuMessage',
+        'imageMessage',
+        'enLigne',
+        'taillePoliceTitre',
+        'taillePoliceContenu',
+        'typePoliceTitre',
+        'typePoliceContenu',
+        'alignementMessage',
+    ];
 }
