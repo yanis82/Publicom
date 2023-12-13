@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\HistoriqueMessageModel;
 use App\Models\MessageModel;
 use CodeIgniter\Files\File;
-use CodeIgniter\I18n\Time;
 
 class Message extends BaseController
 {
