@@ -9,11 +9,11 @@ use CodeIgniter\Files\File;
 class Message extends BaseController
 {
     private $messageModel;
-    private $HistoriquemessageModel;
+    private $historiqueMessageModel;
     public function __construct()
     {
         $this->messageModel = new MessageModel();
-        $this->HistoriquemessageModel = new HistoriqueMessageModel();
+        $this->historiqueMessageModel = new HistoriqueMessageModel();
     }
     public function modifierForm($idMessage): string
     {
@@ -201,7 +201,7 @@ class Message extends BaseController
 
     public function historique($idHistoriquemessage)
     {
-        $historiquemessage = $this->HistoriquemessageModel->where(['IDMESSAGE' => $idHistoriquemessage])->findAll();
+        $historiquemessage = $this->historiqueMessageModel->where(['IDMESSAGE' => $idHistoriquemessage])->findAll();
         if (!$historiquemessage) {
             Utilitaires::error('Ce message n\'existe pas');
         }
