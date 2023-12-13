@@ -14,7 +14,6 @@ class Message extends BaseController
     public function __construct()
     {
         $this->messageModel = new MessageModel();
-        $this->HistoriquemessageModel = new HistoriqueMessageModel();
     }
     public function modifierForm($idMessage): string
     {
