@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class HistoriqueMessageModel extends Model
 {
     protected $DBGroup = 'default';
-    protected $table = 'historiqueMessage';
+    protected $table = 'HISTORIQUEMESSAGE';
     protected $primaryKey = 'IDHISTORIQUEMESSAGE';
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
