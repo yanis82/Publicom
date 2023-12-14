@@ -29,6 +29,7 @@ use App\Controllers\Message;
                     <th>taille message</th>
                     <th>police titre</th>
                     <th>police message</th>
+                    <th>alignement</th>
                     <th>action</th>
                 </tr>
             </thead>
@@ -72,6 +73,9 @@ use App\Controllers\Message;
                         </td>
                         <td>
                             <?= $historiqueMessage['TYPEPOLICECONTENU'] ?>
+                        </td>
+                        <td>
+                            <?= $historiqueMessage['ALIGNEMENTMESSAGE'] ?>
                         </td>
                         <td>
                             <?= $historiqueMessage['TYPEMODIFICATION'] ?>

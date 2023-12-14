@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\HistoriqueMessageModel;
 use App\Models\MessageModel;
+use App\Models\HistoriqueMessageModel;
 use CodeIgniter\Files\File;
 
 class Message extends BaseController
