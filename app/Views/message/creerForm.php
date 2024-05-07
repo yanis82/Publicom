@@ -16,7 +16,7 @@
         <div class="col-md-6">
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label for="titre" class="form-label">Titre</label>
+                    <label for="titre" class="form-label">Titre message</label>
                     <input type="text" name="titre" id="titre" class="form-control" required>
                 </div>
                 <div class="mb-3">
